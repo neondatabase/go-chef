@@ -147,7 +147,7 @@ func runPrepare(recipePath string) error {
 
 	builder := newImportsBuilder(moduleName)
 
-	fs.WalkDir(os.DirFS("."), ".", func(path string, d fs.DirEntry, err error) error {
+	err = fs.WalkDir(os.DirFS("."), ".", func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
@@ -168,6 +168,9 @@ func runPrepare(recipePath string) error {
 		}
 		return nil
 	})
+	if err != nil {
+		return fmt.Errorf("could not walk dir: %w", err)
+	}
 
 	r := recipe{
 		ImportGroups: builder.importGroups(),
