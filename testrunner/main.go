@@ -21,8 +21,9 @@ import (
 	"github.com/moby/buildkit/util/progress/progressui"
 	"golang.org/x/term"
 	"gopkg.in/yaml.v3"
-	// note: have import this so that the 'docker' driver is available to use.
+	// note: have import these so that the drivers are available to use.
 	_ "github.com/docker/buildx/driver/docker"
+	_ "github.com/docker/buildx/driver/docker-container"
 )
 
 // TestCase defines a single test case
