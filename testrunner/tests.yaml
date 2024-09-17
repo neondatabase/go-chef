@@ -1,0 +1,12 @@
+- name: neondatabase/autoscaling
+  git:
+    url: https://github.com/neondatabase/autoscaling
+    branch: v0.34.0
+  targets:
+    - cmd/autoscale-scheduler/main.go
+    - cmd/autoscaler-agent/main.go
+    - neonvm/tools/vm-builder/main.go
+    - neonvm/tools/vxlan/controller/main.go
+    - neonvm/runner/container-mgr/*.go
+    - neonvm/runner/main.go
+    - neonvm/main.go
