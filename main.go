@@ -223,6 +223,13 @@ func (b *importsBuilder) addFile(filepath string) error {
 		if err != nil {
 			return fmt.Errorf("failed to unquote %s : %w", spec.Path.Value, err)
 		}
+		if pkg == "C" {
+			// "C" is a pseudo-package that changes the interpretation of the file.
+			// If we include it in the file with no build constraints, then the non-cgo version of
+			// 'package main' will be missing a 'func main()'.
+			// So, skip importing "C" if we see it.
+			continue
+		}
 		if !strings.HasPrefix(pkg, b.modPrefix) {
 			ig[pkg] = struct{}{}
 		}
