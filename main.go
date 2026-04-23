@@ -179,7 +179,7 @@ func runPrepare(recipePath string) error {
 		panic(fmt.Errorf("failed to marshal recipe JSON: %w", err))
 	}
 
-	if err := os.WriteFile(recipePath, recipeJSON, 0o777); err != nil {
+	if err := os.WriteFile(recipePath, recipeJSON, 0o644); err != nil {
 		return fmt.Errorf("could not write recipe to file %s: %w", recipePath, err)
 	}
 
